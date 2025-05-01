@@ -15,6 +15,6 @@ The datasets are sourced from well-known platforms such as
 [SNAP (Stanford Network Analysis Platform)](https://snap.stanford.edu/data/) and [the Network Repository](https://networkrepository.com/index.php). Please ensure that there are no comments in the dataset file, the starting vertex is "0", and each line stores the source vertex and the destination vertex u and v (u < v) of an edge.
 
 ## Running
-Modify the absolute path of the graph dataset in the `run` function of the `main` entry in the `equitruss.py` and `equitree`.py files, then execute `python xxx.py` to complete the index construction. For index search and index maintenance, please uncomment the corresponding sections in the `run` function.
+Modify the absolute path of the graph dataset in the `run` function of the `main` entry in the `equitruss.py` and `equitree.py` files, then execute `python xxx.py` to complete the index construction. For index search and index maintenance, please uncomment the corresponding sections in the `run` function.
 
 If you have any questions, you can send an email to junchaoma@whu.edu.cn or xin_yan@whu.edu.cn
