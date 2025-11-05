@@ -11,6 +11,7 @@ The operating system is Ubuntu 22.04, and development tools such as g++ 11.4, Py
 The datasets are sourced from well-known platforms such as [SNAP (Stanford Network Analysis Platform)](https://snap.stanford.edu/data/) and [the Network Repository](https://networkrepository.com/index.php). Please ensure that there are no comments in the dataset file, the starting vertex is "0", and each line stores the source vertex and the destination vertex u and v (u < v) of an edge.
 
 ## Running
-Modify the absolute path of the graph dataset in the `run` function of the `main` entry in the `equitruss.py` and `equitree.py` files, then execute `python xxx.py` to complete the index construction. For index search and index maintenance, please uncomment the corresponding sections in the `run` function.
+We provide two versions of the source code: TETree and TETree-special-optimized. TETree is a general version that can run on any hardware supporting PyTorch, while TETree-special-optimized is further optimized for NVIDIA GPUs. Please refer to the corresponding readme.md for instructions on running the respective algorithms.
+
 
 
