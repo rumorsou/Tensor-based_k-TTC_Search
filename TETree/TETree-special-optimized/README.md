@@ -24,16 +24,17 @@ We also provide a sample dataset named "facebook_truss_result.txt" which satisfi
    
   for TETree:
   
-    `python TETree.py -f ./facebook_truss_result.txt`
+    python TETree.py -f ./facebook_truss_result.txt
     
   for TETree-Basic:
 
-    `python TETree-basic.py -f ./facebook_truss_result.txt`
+    python TETree-basic.py -f ./facebook_truss_result.txt
   
   './facebook_truss_result.txt' can be replaced by other datesets.
 
 
    
+
 
 
 
