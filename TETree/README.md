@@ -16,12 +16,13 @@ Please ensure that there are no comments in the dataset file, the starting verte
 We also provide a sample dataset named "facebook_truss_result.txt" which satisfies all requirements mentioned above.
 
 ## Running
-for TETree:
-'python TETree.py -f ./facebook_truss_result.txt'
-for TETree-Basic:
-'python TETree-basic.py -f ./facebook_truss_result.txt'
+for TETree:<br>
+'python TETree.py -f ./facebook_truss_result.txt'<br>
+for TETree-Basic:<br>
+'python TETree-basic.py -f ./facebook_truss_result.txt'<br>
 
 './facebook_truss_result.txt' can be replaced by other datesets.
+
 
 
 
