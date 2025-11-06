@@ -9,7 +9,7 @@ We will subsequently organize and provide an additional interface to construct i
 Ubuntu 22.04, Python 3.11, PyTorch 2.2.2, torch-scatter 2.1.2, and CUDA 12.1.
 
 ## Datasets
-Please ensure that there are no comments in the dataset file, the starting vertex is "0" and generate their trussness using any k-truss decomposition application out there and write them in a file in the following format "u v k" where, (u,v) is an edge and u < v and k is the trussness.
+Please ensure that there are no comments in the dataset file, the starting vertex is "0" and generate their trussness using any k-truss decomposition application out there and write them in a file in the following format "u,v,k" where, (u,v) is an edge and u < v and k is the trussness.
 
 We also provide a sample dataset named "facebook_truss_result.txt" which satisfies all requirements mentioned above.
 
@@ -34,6 +34,7 @@ We also provide a sample dataset named "facebook_truss_result.txt" which satisfi
 
 
    
+
 
 
 
