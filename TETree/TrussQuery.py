@@ -13,16 +13,16 @@ def query_vertex_3(v: int, k: int, row_ptr, columns, max_node_id, sp_node, sp_ed
     # 修改后的root，各节点先指向自己，由des指向src，再compress
     # 保证合法的查询
     if k < 3:
-        print("k<3, 不合法")
+        print("k<3")
         return
     if v < 0 or v > row_ptr.shape[0] - 1:
-        print("查询节点v不合法")
+        print("Illegal query vertex v")
         return
     mask = torch.zeros(columns.shape[0], device=device, dtype=torch.bool)
     mask[row_ptr[v]:row_ptr[v + 1]] = True
     mask = mask | (columns == v)
     if torch.sum(mask.to(torch.int32)) == 0:
-        print("未查找到符合要求的社区")
+        print("No such communities")
         return
 
     # 初始化变量
@@ -53,7 +53,7 @@ def query_vertex_3(v: int, k: int, row_ptr, columns, max_node_id, sp_node, sp_ed
     sp_node_root = sp_node_root[sp_node_truss[sp_node_root] >= k]
     # print(sp_node_root)
     if sp_node_root.size(0) == 0:
-        print("未查找到符合要求的社区")
+        print("No such communities")
         return
 
     sorted_root, idxs = torch.sort(root)
@@ -118,8 +118,8 @@ def run_with_truss(filename: str, name: str = "", query_count: int = 1000):
         query_vertex_3(v, 4, row_ptr ,columns, max_node_id ,sp_node ,sp_edge_s, sp_edge_e ,sp_node_id.to(torch.int32), sp_node_truss,sorted_pi,idx,sp_ptr)
         i=i+1
     t2 = time.time()
-    print("查询总时间：",str(t2-t1),"ms")
-    print("查询平均时间：", str((t2 - t1)/query_count), "ms")
+    print("Total time：",str(t2-t1),"ms")
+    print("Average time：", str((t2 - t1)/query_count), "ms")
 
 if __name__ == '__main__':
     import argparse
@@ -135,3 +135,4 @@ if __name__ == '__main__':
 
     args = parser.parse_args()
     run_with_truss(args.filename, name=args.name, query_count=args.query)
+
