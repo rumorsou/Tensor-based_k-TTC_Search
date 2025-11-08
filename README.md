@@ -21,7 +21,8 @@ for TETree-Basic:<br>
 
 './facebook_truss_result.txt' can be replaced by other datesets.
 
-For better perfoemance, we specially optimize triangle computation for NVIDIA GPUs and name it as "TETree-special-optimized". Please refer to ./TETree/TETree-special-optimized/readme_special.md for more details.
+For better perfoemance, we specially optimize triangle computation for NVIDIA GPUs and name it as "TETree-special-optimized". Please refer to ./TETree/TETree-special-optimized/README_special.md for more details.
+
 
 
 
