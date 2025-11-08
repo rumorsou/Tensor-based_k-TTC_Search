@@ -12,21 +12,28 @@ Here is the source code of "TETree-special-optimized", where triangle computatio
 
 2. Run the following command to install the extended tensor operator library.
 
-   `python ./hpu_extension/setup.py install`
+   ```
+   python ./hpu_extension/setup.py install
+   ```
 
-3. Run TETree-special-optimized using the following command (note that '../facebook.txt' can be replaced by other datesets).
+4. Run TETree-special-optimized using the following command (note that '../facebook.txt' can be replaced by other datesets).
    
   
-    `python TETree.py -f ../facebook.txt`
+    ```
+   python TETree.py -f ../facebook.txt
+    ```
     
     or
 
-    `python TETree-basic.py -f ../facebook.txt`
+    ```
+   python TETree-basic.py -f ../facebook.txt
+    ```
   
 
 
 
    
+
 
 
 
