@@ -10,7 +10,7 @@ Here is the source code of "TETree-special-optimized", where triangle computatio
 
    `python ./hpu_extension/setup.py install`
 
-3. Prepare the dataset and build the index (take facebook_truss_result.txt for example).
+3. Prepare the dataset and build the index (take facebook.txt for example).
    
   for TETree:
   
@@ -24,6 +24,7 @@ Here is the source code of "TETree-special-optimized", where triangle computatio
 
 
    
+
 
 
 
