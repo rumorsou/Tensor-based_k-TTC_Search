@@ -3,8 +3,6 @@
 ## Overview
 Here is the source code of "TETree-special-optimized". which is specially optimized for NVIDIA GPUs. We implement additional optimizations for triangle computation, which constitutes a performance bottleneck in the general version.
 
-We will subsequently organize and provide an additional interface to construct indices for datasets without precomputed trussness results.
-
 ## Running
 1. Modify the absolute path of the sources parameter in "./hpu_extension/setup.py", then modify the path in the following command line and run to install the trusstensor library. Note that the extra_compile_args parameter in setup.py should be configured according to your experimental environment. For instance, when using NVIDIA A100 GPUs, you need to specify the corresponding compute capability by modifying the gencode flag to -gencode=arch=compute_80,code=sm_80.
 
@@ -26,6 +24,7 @@ We will subsequently organize and provide an additional interface to construct i
 
 
    
+
 
 
 
