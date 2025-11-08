@@ -8,7 +8,7 @@ Here is the source code of "TETree-special-optimized", where triangle computatio
    
    (1) replace lines 10-12 with your own path.
    
-   (2) update the compile arguments in lines 15-25.
+   (2) update the compile arguments in lines 22-23.
 
 2. Run the following command to install the extended tensor operator library.
 
@@ -27,6 +27,7 @@ Here is the source code of "TETree-special-optimized", where triangle computatio
 
 
    
+
 
 
 
