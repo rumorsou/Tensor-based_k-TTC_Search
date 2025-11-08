@@ -37,7 +37,10 @@ The datasets are sourced from well-known platforms such as [SNAP (Stanford Netwo
 
     for random queries by count (the `-c` parameter represents the number of randomly generated query vertices):
    
-     `python TrussQuery.py -f ./facebook.txt -c 1000 -k 4`
+     ```
+   python TrussQuery.py -f ./facebook.txt -c 1000 -k 4
+     ```
+
 
 
 
