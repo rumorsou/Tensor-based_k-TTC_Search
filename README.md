@@ -4,8 +4,6 @@ This repository contains the source code of the paper "Accelerating Triangle-Con
 ## Overview
 We provide source codes of tensor-based EquiTree index construction algorithms, including TETree and TETree-Basic. All these algorithms are implemented by Python in the PyTorch framework.
 
-We will subsequently organize and provide an additional interface to construct indices for datasets without precomputed trussness results.
-
 ## Experimental Environments
 The operating system is Ubuntu 22.04, and development tools such as g++ 11.4, Python 3.11, PyTorch 2.2.2, torch-scatter 2.1.2, and CUDA 12.1 are installed to ensure that the test environment can fully satisfy all algorithms. 
 
@@ -23,6 +21,7 @@ for TETree-Basic:<br>
 './facebook_truss_result.txt' can be replaced by other datesets.
 
 We also provide TETree-special-optimized, where triangle computation is specifically optimized for NVIDIA GPUs. See `./TETree/TETree-special-optimized/README_special.md` for details.
+
 
 
 
