@@ -14,6 +14,7 @@ The datasets are sourced from well-known platforms such as [SNAP (Stanford Netwo
 
 ## Running
 We provide the source code: TETree and TETree-Basic, which are general versions that can run on any hardware supporting PyTorch.
+
 for TETree:<br>
   `python ./TETree/TETree.py -f ./TETree/facebook_truss_result.txt`<br>
 for TETree-Basic:<br>
@@ -22,6 +23,7 @@ for TETree-Basic:<br>
 './facebook_truss_result.txt' can be replaced by other datesets.
 
 For better perfoemance, we specially optimize triangle computation for NVIDIA GPUs and name it as "TETree-special-optimized". Please refer to ./TETree/TETree-special-optimized/README_special.md for more details.
+
 
 
 
