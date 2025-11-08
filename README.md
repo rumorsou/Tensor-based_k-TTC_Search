@@ -11,17 +11,18 @@ The operating system is Ubuntu 22.04, and development tools such as g++ 11.4, Py
 The datasets are sourced from well-known platforms such as [SNAP (Stanford Network Analysis Platform)](https://snap.stanford.edu/data/) and [the Network Repository](https://networkrepository.com/index.php). Please ensure that there are no comments in the dataset file. The input dataset should be a text file where each line contains an edge in the format "u,v,k". Here, (u,v) represents an edge with u < v, and k denotes the trussness. Node IDs start from 0 and are ranked in increasing order.
 
 ## Running
-We provide the source code: TETree and TETree-Basic, which are general versions that can run on any hardware supporting PyTorch.
+1. Run TETree/TETree-Basic index construction algorithms using the following command (the `-f` parameter represents the dataset file name).
 
-for TETree:<br>
-  `python ./TETree/TETree.py -f ./TETree/facebook.txt`<br>
-for TETree-Basic:<br>
-  `python ./TETree/TETree-basic.py -f ./TETree/facebook.txt`<br>
+  for TETree:<br>
+    `python ./TETree/TETree.py -f ./TETree/facebook.txt`<br>
+  for TETree-Basic:<br>
+    `python ./TETree/TETree-basic.py -f ./TETree/facebook.txt`<br>
 
-'./facebook.txt' can be replaced by other datesets.
+  We also provide TETree-special-optimized, where triangle computation is specifically optimized for NVIDIA GPUs. See `./TETree/TETree-special-optimized/README_special.md` for details.
 
-We also provide TETree-special-optimized, where triangle computation is specifically optimized for NVIDIA GPUs. See `./TETree/TETree-special-optimized/README_special.md` for details.
+2. Run TETree-OPCC search algorithm using the following command (the `-f` parameter represents the dataset file name, the `-q` parameter represents the number of randomly generated query vertices).
 
+   `python TrussQuery.py -f ./facebook.txt -q 1000`
 
 
 
