@@ -13,25 +13,32 @@ The datasets are sourced from well-known platforms such as [SNAP (Stanford Netwo
 ## Running
 1. Run TETree/TETree-Basic index construction algorithms using the following command (the `-f` parameter represents the dataset file name).
 
-  for TETree:
+    for TETree:
   
-    `python ./TETree/TETree.py -f ./TETree/facebook.txt`
+      ```
+   python ./TETree/TETree.py -f ./TETree/facebook.txt
+      ```
     
-  for TETree-Basic:
+    for TETree-Basic:
   
-    `python ./TETree/TETree-basic.py -f ./TETree/facebook.txt`
+   ```
+   python ./TETree/TETree-basic.py -f ./TETree/facebook.txt
+   ```
 
-  We also provide TETree-special-optimized, where triangle computation is specifically optimized for NVIDIA GPUs. See `./TETree/TETree-special-optimized/README_special.md` for details.
+    We also provide TETree-special-optimized, where triangle computation is specifically optimized for NVIDIA GPUs. See `./TETree/TETree-special-optimized/README_special.md` for details.
 
-2. Run TETree-OPCC search algorithm using the following command (the `-f` parameter represents the dataset file name, the `-k` parameter represents "k"-TTC to be searched).
+3. Run TETree-OPCC search algorithm using the following command (the `-f` parameter represents the dataset file name, the `-k` parameter represents "k"-TTC to be searched).
 
-  for single vertex query (the `-v` parameter represents the vertex ID): 
+    for single vertex query (the `-v` parameter represents the vertex ID): 
 
-   `python TrussQuery.py -f ./facebook.txt -v 10 -k 4`
+     ```
+     python TrussQuery.py -f ./facebook.txt -v 10 -k 4
+     ```
 
-  for random queries by count (the `-c` parameter represents the number of randomly generated query vertices):
+    for random queries by count (the `-c` parameter represents the number of randomly generated query vertices):
    
-   `python TrussQuery.py -f ./facebook.txt -c 1000 -k 4`
+     `python TrussQuery.py -f ./facebook.txt -c 1000 -k 4`
+
 
 
 
