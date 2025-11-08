@@ -4,7 +4,11 @@
 Here is the source code of "TETree-special-optimized", where triangle computation is specifically optimized for NVIDIA GPUs.
 
 ## Running
-1. Modify the "./hpu_extension/setup.py" to configure your experimental environment. (1) replace lines 10-12 with your own path  (2) update the compile arguments in lines 15-25
+1. Modify the "./hpu_extension/setup.py" to configure your experimental environment:
+   
+   (1) replace lines 10-12 with your own path.
+   
+   (2) update the compile arguments in lines 15-25.
 
 2. Run the following command to install the extended tensor operator library.
 
@@ -23,6 +27,7 @@ Here is the source code of "TETree-special-optimized", where triangle computatio
 
 
    
+
 
 
 
