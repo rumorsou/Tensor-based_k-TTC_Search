@@ -13,16 +13,16 @@ def query_vertex_3(v: int, k: int, row_ptr, columns, max_node_id, sp_node, sp_ed
     # 修改后的root，各节点先指向自己，由des指向src，再compress
     # 保证合法的查询
     if k < 3:
-        print("k<3")
+        print("k<3, 不合法")
         return
     if v < 0 or v > row_ptr.shape[0] - 1:
-        print("Illegal query vertex v")
+        print("查询节点v不合法")
         return
     mask = torch.zeros(columns.shape[0], device=device, dtype=torch.bool)
     mask[row_ptr[v]:row_ptr[v + 1]] = True
     mask = mask | (columns == v)
     if torch.sum(mask.to(torch.int32)) == 0:
-        print("No such communities")
+        print("未查找到符合要求的社区")
         return
 
     # 初始化变量
@@ -53,7 +53,7 @@ def query_vertex_3(v: int, k: int, row_ptr, columns, max_node_id, sp_node, sp_ed
     sp_node_root = sp_node_root[sp_node_truss[sp_node_root] >= k]
     # print(sp_node_root)
     if sp_node_root.size(0) == 0:
-        print("No such communities")
+        print("未查找到符合要求的社区")
         return
 
     sorted_root, idxs = torch.sort(root)
@@ -83,8 +83,9 @@ def query_vertex_3(v: int, k: int, row_ptr, columns, max_node_id, sp_node, sp_ed
 
     return visited
 
-def run_with_truss(filename: str, query_count: int = 1000):
+def run_with_truss(filename: str, name: str = "", query_count: int = 5, query_node: int = None, k: int = 4):
     torch.cuda.empty_cache()
+    print("=======!!!{}=======".format(name))
     edge_starts, edge_ends, truss = read_edge_and_truss_txt_gpu(filename, 0)
     row_ptr, columns, rows, truss_result = edgelist_and_truss_to_csr_gpu(edge_starts, edge_ends, truss, direct=True)
     del edge_starts, edge_ends, truss
@@ -109,28 +110,55 @@ def run_with_truss(filename: str, query_count: int = 1000):
     sp_ptr = torch.cumsum(torch.cat((torch.tensor([0],device=device,dtype=cnt.dtype),cnt),dim=0),dim=0).to(torch.int32)
     sp_node_truss = sorted_truss[sp_ptr[:-1]]
 
-    random_list = random.sample(range(0, row_ptr.size(0)-1), query_count)
+    # If a specific node is provided, run a single query on that node
+    if query_node is not None:
+        print("执行单点查询，节点ID：{}，k={}".format(query_node, k))
+        t1 = time.time()
+        query_vertex_3(query_node, k, row_ptr, columns, max_node_id, sp_node, sp_edge_s, sp_edge_e,
+                       sp_node_id.to(torch.int32), sp_node_truss, sorted_pi, idx, sp_ptr)
+        t2 = time.time()
+        print("查询总时间：", str(t2 - t1), "ms")
+        print("查询平均时间：", str(t2 - t1), "ms")
+        return
+
+    # Otherwise, run random queries with the provided count (default 1000)
+    if query_count is None:
+        query_count = 5
+    random_list = random.sample(range(0, row_ptr.size(0) - 1), query_count)
     t1 = time.time()
-    i=1
+    i = 1
     for v in random_list:
-        print("第"+str(i)+"次查询")
-        query_vertex_3(v, 4, row_ptr ,columns, max_node_id ,sp_node ,sp_edge_s, sp_edge_e ,sp_node_id.to(torch.int32), sp_node_truss,sorted_pi,idx,sp_ptr)
-        i=i+1
+        print("第" + str(i) + "次查询，k=" + str(k))
+        query_vertex_3(v, k, row_ptr, columns, max_node_id, sp_node, sp_edge_s, sp_edge_e,
+                       sp_node_id.to(torch.int32), sp_node_truss, sorted_pi, idx, sp_ptr)
+        i = i + 1
     t2 = time.time()
-    print("Total time：",str(t2-t1),"ms")
-    print("Average time：", str((t2 - t1)/query_count), "ms")
+    print("查询总时间：", str(t2 - t1), "ms")
+    print("查询平均时间：", str((t2 - t1) / query_count), "ms")
 
 if __name__ == '__main__':
     import argparse
 
     parser = argparse.ArgumentParser(description='Run EquiTree construction with Graph file')
     parser.add_argument('--filename', '-f',
-                        default=r"facebook.txt",
+                        default=r"./facebook_truss_result.txt",
                         help='Path to the truss result file')
-    parser.add_argument('--query', '-q', required=True, type=int,
-                        help='Number of queries to run (required)')
+    parser.add_argument('--name', '-n', default="facebook_truss",
+                        help='Name for the run (optional)')
+    # Optional number of random queries to run
+    parser.add_argument('--count', '-c', type=int,
+                        help='Number of random queries to run (optional)')
+    # Backward compatibility: --query/-q as an alias for --count (optional)
+    parser.add_argument('--query', '-q', type=int,
+                        help='Alias for --count (optional)')
+    # Optional: specific node id to query
+    parser.add_argument('--vertex', '-v', type=int,
+                        help='Specific vertex ID to query (optional)')
+    # Truss parameter k (used as the second argument of query_vertex_3)
+    parser.add_argument('--k', '-k', type=int, default=4,
+                        help='Truss parameter k (default: 4)')
 
     args = parser.parse_args()
-    run_with_truss(args.filename, name=args.name, query_count=args.query)
-
-
+    # Resolve count with backward compatibility for --query/-q
+    resolved_count = args.count if args.count is not None else args.query
+    run_with_truss(args.filename, name=args.name, query_count=resolved_count, query_node=args.vertex, k=args.k)
