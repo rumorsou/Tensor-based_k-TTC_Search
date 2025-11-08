@@ -2,7 +2,7 @@
 This repository contains the source code of the paper "Accelerating Triangle-Connected Truss Community Search Across Heterogeneous Hardware" .
 
 ## Overview
-We provide source codes of tensor-based EquiTree index construction algorithms, including TETree and TETree-Basic. All these algorithms are implemented by Python in the PyTorch framework.
+We provide source codes of tensor-based EquiTree index construction algorithms, including TETree and TETree-Basic, along with the search algorithm TETree-OPCC. All these algorithms are implemented by Python in the PyTorch framework.
 
 ## Experimental Environments
 The operating system is Ubuntu 22.04, and development tools such as g++ 11.4, Python 3.11, PyTorch 2.2.2, torch-scatter 2.1.2, and CUDA 12.1 are installed to ensure that the test environment can fully satisfy all algorithms. 
