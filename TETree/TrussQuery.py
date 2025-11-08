@@ -83,9 +83,8 @@ def query_vertex_3(v: int, k: int, row_ptr, columns, max_node_id, sp_node, sp_ed
 
     return visited
 
-def run_with_truss(filename: str, name: str = "", query_count: int = 1000):
+def run_with_truss(filename: str, query_count: int = 1000):
     torch.cuda.empty_cache()
-    print("=======!!!{}=======".format(name))
     edge_starts, edge_ends, truss = read_edge_and_truss_txt_gpu(filename, 0)
     row_ptr, columns, rows, truss_result = edgelist_and_truss_to_csr_gpu(edge_starts, edge_ends, truss, direct=True)
     del edge_starts, edge_ends, truss
@@ -126,13 +125,12 @@ if __name__ == '__main__':
 
     parser = argparse.ArgumentParser(description='Run EquiTree construction with Graph file')
     parser.add_argument('--filename', '-f',
-                        default=r"facebook_truss_result.txt",
+                        default=r"facebook.txt",
                         help='Path to the truss result file')
-    parser.add_argument('--name', '-n', default="facebook_truss",
-                        help='Name for the run (optional)')
     parser.add_argument('--query', '-q', required=True, type=int,
                         help='Number of queries to run (required)')
 
     args = parser.parse_args()
     run_with_truss(args.filename, name=args.name, query_count=args.query)
+
 
